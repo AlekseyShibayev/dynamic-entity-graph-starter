@@ -6,7 +6,6 @@ import com.company.app.entitygraphextractor.domain.entity.UserInfo;
 import com.company.app.entitygraphextractor.domain.repository.ChatRepository;
 import com.company.app.entitygraphextractor.domain.repository.SubscriptionRepository;
 import com.company.app.springboot.SpringBootTestApplicationContext;
-import com.google.common.collect.Lists;
 import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
