@@ -9,8 +9,10 @@ import com.company.app.entitygraphextractor.domain.repository.HistoryRepository;
 import com.company.app.entitygraphextractor.domain.repository.SubscriptionInfoRepository;
 import com.company.app.entitygraphextractor.domain.repository.SubscriptionRepository;
 import com.company.app.entitygraphextractor.domain.repository.UserInfoRepository;
+import com.company.app.entitygraphextractor.example.ChatEntityGraphExtractor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.Date;
@@ -18,6 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 @RequiredArgsConstructor
+@Transactional
 public class TestChatFactory {
 
     private static final AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -29,10 +32,12 @@ public class TestChatFactory {
     private final SubscriptionInfoRepository subscriptionInfoRepository;
 
     public TestChatFactoryContext createChatContext(Chat chat) {
+
         return TestChatFactoryContext.builder()
                 .chat(chat)
 
                 .testFactory(this)
+
                 .chatRepository(chatRepository)
                 .userInfoRepository(userInfoRepository)
                 .historyRepository(historyRepository)
@@ -65,6 +70,18 @@ public class TestChatFactory {
     public History createHistory(Chat chat) {
         History history = History.builder().chat(chat).date(new Date()).message("default").build();
         return historyRepository.save(history);
+    }
+
+    @Transactional
+    public Chat test(ChatEntityGraphExtractor extractor, Chat chat) {
+        chatRepository.findById(chat.getId());
+
+        Chat extracted = extractor.createContext(chat.getId())
+                .withHistories()
+                .withSubscriptions()
+                .extract();
+
+        return extracted;
     }
 
 }

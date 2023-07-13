@@ -3,6 +3,7 @@ package com.company.app.entitygraphextractor.example;
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.domain.repository.ChatRepository;
 import com.company.app.infrastructure.SpringBootTestApplicationContext;
+import lombok.SneakyThrows;
 import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -75,6 +76,16 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
                 .extract();
         Assertions.assertEquals("default", extracted.getSubscriptions().stream().findFirst().get()
                 .getSubscriptionInfos().get(0).getType());
+    }
+
+    @SneakyThrows
+    @Test
+    void can_extract_collection_and_another_collection() {
+        Chat chat = testFactory.createChatContext()
+                .withSubscriptionDefault()
+                .withHistoryDefault()
+                .save();
+        Assertions.assertDoesNotThrow(() -> testFactory.test(extractor, chat));
     }
 
 }

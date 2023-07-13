@@ -10,11 +10,13 @@ import com.company.app.entitygraphextractor.domain.repository.SubscriptionReposi
 import com.company.app.entitygraphextractor.domain.repository.UserInfoRepository;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
 @Data
 @Builder
+@Transactional
 public class TestChatFactoryContext {
 
     private Chat chat;
