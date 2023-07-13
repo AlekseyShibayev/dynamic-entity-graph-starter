@@ -1,4 +1,4 @@
-package com.company.app.core.entity_graph_generator;
+package com.company.app.generator;
 
 import com.google.common.collect.Maps;
 import com.google.common.reflect.ClassPath;

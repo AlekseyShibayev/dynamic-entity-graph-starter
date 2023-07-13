@@ -1,6 +1,6 @@
 package com.company.app.springboot.spring_boot_test;
 
-import com.company.app.core.StarterConfiguration;
+import com.company.app.StarterConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;

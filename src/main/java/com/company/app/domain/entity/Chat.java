@@ -1,4 +1,4 @@
-package com.company.app.core.telegram.domain.entity;
+package com.company.app.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,8 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -49,7 +47,7 @@ public class Chat {
     private UserInfo userInfo;
 
     @OneToMany(mappedBy = "chat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<History> historyList;
+    private List<History> histories;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "CHATS_SUBSCRIPTIONS")

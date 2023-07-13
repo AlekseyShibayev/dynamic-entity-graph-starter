@@ -1,4 +1,4 @@
-package com.company.app.core.telegram.domain.entity;
+package com.company.app.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -22,17 +21,23 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "SUBSCRIPTION")
-public class Subscription {
+@Table(name = "USER_INFO")
+public class UserInfo {
 
     @Id
     @GeneratedValue
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @Column(name = "TYPE")
-    private String type;
+    @OneToOne(mappedBy = "userInfo")
+    private Chat chat;
 
-    @ManyToMany(mappedBy = "subscriptions")
-    private Set<Chat> chats;
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "ROLE")
+    private String role;
+
+    @Column(name = "GENDER")
+    private String gender;
 }
