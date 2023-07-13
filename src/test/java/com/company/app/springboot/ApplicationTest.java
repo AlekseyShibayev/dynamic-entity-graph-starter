@@ -1,5 +1,6 @@
-package com.company.app.springboot.application;
+package com.company.app.springboot;
 
+import com.company.app.springboot.spring_boot_test.SpringBootTestApplicationContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,8 @@ class ApplicationTest extends SpringBootTestApplicationContext {
     private ApplicationContext applicationContext;
 
     @Test
-    void context_mustRise() {
+    void context_must_rise() {
         Assertions.assertNotNull(applicationContext);
     }
+
 }

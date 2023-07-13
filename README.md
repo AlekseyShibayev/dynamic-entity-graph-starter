@@ -1,6 +1,16 @@
-Spring Boot Starter для проекта [TelegramNotificationService](https://github.com/AlekseyShibayev/TelegramNotificationService)
-[Ссылка на себя](https://github.com/AlekseyShibayev/telegram-bot-spring-boot-starter)
+Собственно мысль.
 
-[![build](https://github.com/AlekseyShibayev/telegram-bot-spring-boot-starter/actions/workflows/build.yml/badge.svg)](https://github.com/AlekseyShibayev/telegram-bot-spring-boot-starter/actions/workflows/build.yml)
+Хочу чтобы стартер сканировал все классы.
+Искал @Entity или спринг дата репозитории. 
+Или если будет сложно - то свой интерфейс или аннотация.
+И создавал класс на лету.
 
-[![codecov](https://codecov.io/gh/AlekseyShibayev/telegram-bot-spring-boot-starter/branch/main/graph/badge.svg?token=8S0HD30E0D)](https://codecov.io/gh/AlekseyShibayev/telegram-bot-spring-boot-starter)
+Этот класс, должен предоставлять апи вида.
+
+Entity entity = entityGraphExtractor.createContext(entity.getId)
+.with...
+.with...And...
+.with...And...And...
+.extract
+
+При этом под капотом, должен собираться entity graph
