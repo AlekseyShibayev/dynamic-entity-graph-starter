@@ -1,7 +1,7 @@
 package com.company.app.infrastructure;
 
 import com.company.app.StarterConfiguration;
-import com.company.app.infrastructure.testfactory.TestFactory;
+import com.company.app.infrastructure.testfactory.TestChatFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 public abstract class SpringBootTestApplicationContext {
 
     @Autowired
-    protected TestFactory testFactory;
+    protected TestChatFactory testFactory;
 
     @PostConstruct
     void init() {

@@ -25,9 +25,11 @@ public class ChatEntityGraphExtractorHandler {
         prepareGraph(context, entityGraph);
         log.debug("[{}]: try extract with [{}] parameters", context.getId(), context.getParameters().size());
 
-        return entityManager.find(Chat.class,
+        Chat chat = entityManager.find(Chat.class,
                 context.getId(),
                 Collections.singletonMap("javax.persistence.loadgraph", entityGraph));
+
+        return chat;
     }
 
     private void prepareGraph(ChatEntityGraphExtractorContext context, EntityGraph<Chat> entityGraph) {

@@ -23,6 +23,10 @@ public class ChatEntityGraphExtractorContext {
         return new ChatEntityGraphExtractorContext(id, handler);
     }
 
+    public Chat extract() {
+        return handler.extract(this);
+    }
+
     public ChatEntityGraphExtractorContext withUserInfo() {
         parameters.add(ChatEntityGraphExtractorNode.builder()
                 .nodeName("userInfo")
@@ -54,8 +58,14 @@ public class ChatEntityGraphExtractorContext {
         return this;
     }
 
-    public Chat extract() {
-        return handler.extract(this);
+    public ChatEntityGraphExtractorContext withSubscriptionsAndSubscriptionInfos() {
+        parameters.add(ChatEntityGraphExtractorNode.builder()
+                .nodeName("subscriptions")
+                .child(ChatEntityGraphExtractorNode.builder()
+                        .nodeName("subscriptionInfos")
+                        .build())
+                .build());
+        return this;
     }
 
 }
