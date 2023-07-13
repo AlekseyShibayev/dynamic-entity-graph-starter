@@ -1,4 +1,4 @@
-package com.company.app.springboot.spring_boot_test;
+package com.company.app.springboot;
 
 import com.company.app.StarterConfiguration;
 import lombok.extern.slf4j.Slf4j;

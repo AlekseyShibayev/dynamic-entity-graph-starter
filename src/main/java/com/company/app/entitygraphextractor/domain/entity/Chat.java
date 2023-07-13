@@ -1,4 +1,4 @@
-package com.company.app.domain.entity;
+package com.company.app.entitygraphextractor.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

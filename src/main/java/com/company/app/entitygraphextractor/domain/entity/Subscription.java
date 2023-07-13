@@ -1,4 +1,4 @@
-package com.company.app.domain.entity;
+package com.company.app.entitygraphextractor.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,23 +22,17 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "USER_INFO")
-public class UserInfo {
+@Table(name = "SUBSCRIPTION")
+public class Subscription {
 
     @Id
     @GeneratedValue
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @OneToOne(mappedBy = "userInfo")
-    private Chat chat;
+    @Column(name = "TYPE")
+    private String type;
 
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "ROLE")
-    private String role;
-
-    @Column(name = "GENDER")
-    private String gender;
+    @ManyToMany(mappedBy = "subscriptions")
+    private List<Chat> chats;
 }

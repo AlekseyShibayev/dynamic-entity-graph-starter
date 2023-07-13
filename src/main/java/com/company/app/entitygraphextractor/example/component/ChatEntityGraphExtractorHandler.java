@@ -1,7 +1,7 @@
-package com.company.app.example.component;
+package com.company.app.entitygraphextractor.example.component;
 
 
-import com.company.app.domain.entity.Chat;
+import com.company.app.entitygraphextractor.domain.entity.Chat;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
