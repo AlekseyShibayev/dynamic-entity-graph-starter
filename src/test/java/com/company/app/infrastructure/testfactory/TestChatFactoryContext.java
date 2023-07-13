@@ -40,14 +40,14 @@ public class TestChatFactoryContext {
 
     public TestChatFactoryContext withSubscriptionDefault() {
         Subscription subscription = testFactory.createSubscription(chat);
-        chat.setSubscriptions(Collections.singleton(subscription));
+        chat.setSubscriptions(Collections.singletonList(subscription));
         return this;
     }
 
     public TestChatFactoryContext withSubscriptionAndSubscriptionInfoDefault() {
         Subscription subscription = testFactory.createSubscription(chat);
         testFactory.createSubscriptionInfo(subscription);
-        chat.setSubscriptions(Collections.singleton(subscription));
+        chat.setSubscriptions(Collections.singletonList(subscription));
         return this;
     }
 
