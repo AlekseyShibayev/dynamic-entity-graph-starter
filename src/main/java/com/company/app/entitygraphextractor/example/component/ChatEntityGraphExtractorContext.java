@@ -30,16 +30,6 @@ public class ChatEntityGraphExtractorContext {
         return this;
     }
 
-//    public ChatEntityGraphExtractorContext withCustomFieldsValuesAndCustomField() {
-//        parameters.add(ChatEntityGraphExtractorNode.builder()
-//                .nodeName("customFieldsValues")
-//                .child(ChatEntityGraphExtractorNode.builder()
-//                        .nodeName("customField")
-//                        .build())
-//                .build());
-//        return this;
-//    }
-
     public ChatEntityGraphExtractorContext withHistories() {
         parameters.add(ChatEntityGraphExtractorNode.builder()
                 .nodeName("histories")
@@ -50,6 +40,16 @@ public class ChatEntityGraphExtractorContext {
     public ChatEntityGraphExtractorContext withSubscriptions() {
         parameters.add(ChatEntityGraphExtractorNode.builder()
                 .nodeName("subscriptions")
+                .build());
+        return this;
+    }
+
+    public ChatEntityGraphExtractorContext withSubscriptionsAndChats() {
+        parameters.add(ChatEntityGraphExtractorNode.builder()
+                .nodeName("subscriptions")
+                .child(ChatEntityGraphExtractorNode.builder()
+                        .nodeName("chats")
+                        .build())
                 .build());
         return this;
     }
