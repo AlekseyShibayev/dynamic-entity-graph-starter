@@ -12,20 +12,12 @@ import org.springframework.stereotype.Component;
 public class EntityGraphExtractor {
 
     @Autowired
-    private EntityGraphExtractorHandler mainHandler;
+    private EntityGraphExtractorHandler entityGraphExtractorHandler;
 
     public ChatEntityGraphExtractorContext createContext(Chat chat) {
         ChatEntityGraphExtractorContext extractorContext = ChatEntityGraphExtractorContext.of(chat);
-        extractorContext.setMainHandler(mainHandler);
+        extractorContext.setMainHandler(entityGraphExtractorHandler);
         return extractorContext;
     }
-
-//    public <E> AbstractEntityGraphExtractorContext<E> createContext(ContextAdapter<E> context) {
-//        AbstractEntityGraphExtractorContext<E> abstractEntityGraphExtractorContext = context.to();
-//        abstractEntityGraphExtractorContext.setMainHandler(mainHandler);
-//
-//
-//        return abstractEntityGraphExtractorContext;
-//    }
 
 }
