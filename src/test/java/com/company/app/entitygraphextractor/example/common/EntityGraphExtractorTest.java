@@ -2,6 +2,7 @@ package com.company.app.entitygraphextractor.example.common;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.domain.repository.ChatRepository;
+import com.company.app.entitygraphextractor.example.EntityGraphExtractor;
 import com.company.app.infrastructure.SpringBootTestApplicationContext;
 import lombok.SneakyThrows;
 import org.hibernate.LazyInitializationException;

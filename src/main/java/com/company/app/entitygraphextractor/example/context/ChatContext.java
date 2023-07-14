@@ -1,19 +1,19 @@
-package com.company.app.entitygraphextractor.example.context.chat;
+package com.company.app.entitygraphextractor.example.context;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
-import com.company.app.entitygraphextractor.example.common.data.AbstractEntityGraphExtractorContext;
-import com.company.app.entitygraphextractor.example.common.data.Node;
+import com.company.app.entitygraphextractor.example.common.AbstractContext;
+import com.company.app.entitygraphextractor.example.common.Node;
 
-public class ChatEntityGraphExtractorContext extends AbstractEntityGraphExtractorContext<Chat> {
+public class ChatContext extends AbstractContext<Chat> {
 
     private final Chat chat;
 
-    private ChatEntityGraphExtractorContext(Chat chat) {
+    private ChatContext(Chat chat) {
         this.chat = chat;
     }
 
-    public static ChatEntityGraphExtractorContext of(Chat chat) {
-        return new ChatEntityGraphExtractorContext(chat);
+    public static ChatContext of(Chat chat) {
+        return new ChatContext(chat);
     }
 
     @Override
@@ -26,28 +26,28 @@ public class ChatEntityGraphExtractorContext extends AbstractEntityGraphExtracto
         return chat.getId();
     }
 
-    public ChatEntityGraphExtractorContext withUserInfo() {
+    public ChatContext withUserInfo() {
         nodes.add(Node.builder()
                 .name("userInfo")
                 .build());
         return this;
     }
 
-    public ChatEntityGraphExtractorContext withHistories() {
+    public ChatContext withHistories() {
         nodes.add(Node.builder()
                 .name("histories")
                 .build());
         return this;
     }
 
-    public ChatEntityGraphExtractorContext withSubscriptions() {
+    public ChatContext withSubscriptions() {
         nodes.add(Node.builder()
                 .name("subscriptions")
                 .build());
         return this;
     }
 
-    public ChatEntityGraphExtractorContext withSubscriptionsAndChats() {
+    public ChatContext withSubscriptionsAndChats() {
         nodes.add(Node.builder()
                 .name("subscriptions")
                 .child(Node.builder()
@@ -57,7 +57,7 @@ public class ChatEntityGraphExtractorContext extends AbstractEntityGraphExtracto
         return this;
     }
 
-    public ChatEntityGraphExtractorContext withSubscriptionsAndSubscriptionInfos() {
+    public ChatContext withSubscriptionsAndSubscriptionInfos() {
         nodes.add(Node.builder()
                 .name("subscriptions")
                 .child(Node.builder()

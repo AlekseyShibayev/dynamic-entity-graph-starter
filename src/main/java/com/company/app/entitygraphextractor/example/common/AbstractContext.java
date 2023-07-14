@@ -1,12 +1,11 @@
-package com.company.app.entitygraphextractor.example.common.data;
+package com.company.app.entitygraphextractor.example.common;
 
-import com.company.app.entitygraphextractor.example.common.component.EntityGraphExtractorHandler;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractEntityGraphExtractorContext<E> implements EntityGraphExtractorContext<E> {
+public abstract class AbstractContext<E> implements Context<E> {
 
     @Setter
     private EntityGraphExtractorHandler mainHandler;

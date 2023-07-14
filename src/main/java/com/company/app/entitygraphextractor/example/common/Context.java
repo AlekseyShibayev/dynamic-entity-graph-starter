@@ -1,8 +1,8 @@
-package com.company.app.entitygraphextractor.example.common.data;
+package com.company.app.entitygraphextractor.example.common;
 
 import java.util.List;
 
-public interface EntityGraphExtractorContext<E> {
+interface Context<E> {
 
     Class<E> getClass_();
 

@@ -1,7 +1,5 @@
-package com.company.app.entitygraphextractor.example.common.component;
+package com.company.app.entitygraphextractor.example.common;
 
-import com.company.app.entitygraphextractor.example.common.data.EntityGraphExtractorContext;
-import com.company.app.entitygraphextractor.example.common.data.Node;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +18,7 @@ public class EntityGraphExtractorHandler {
     private EntityManager entityManager;
 
     @Transactional(readOnly = true)
-    public <E> E extract(EntityGraphExtractorContext<E> context) {
+    public <E> E extract(Context<E> context) {
         Long id = context.getId_();
         Class<E> eClass = context.getClass_();
         List<Node> nodes = context.getNodes_();
@@ -36,7 +34,7 @@ public class EntityGraphExtractorHandler {
             }
         }
 
-        log.debug("[{}]: try extract with [{}] parameters", id, nodes.size());
+        log.debug("[{}]: try extract with [{}] parameters for [{}]", id, nodes.size(), eClass.getName());
 
         return entityManager.find(eClass,
                 id,
