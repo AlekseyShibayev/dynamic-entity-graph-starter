@@ -25,6 +25,16 @@ public class EntityGraphExtractorHandler {
 
         EntityGraph<E> entityGraph = entityManager.createEntityGraph(eClass);
 
+        prepareGraph(nodes, entityGraph);
+
+        log.debug("[{}]: try extract with [{}] parameters for [{}]", id, nodes.size(), eClass.getName());
+
+        return entityManager.find(eClass,
+                id,
+                Collections.singletonMap("javax.persistence.loadgraph", entityGraph));
+    }
+
+    private <E> void prepareGraph(List<Node> nodes, EntityGraph<E> entityGraph) {
         for (Node node : nodes) {
             entityGraph.addAttributeNodes(node.getName());
             if (node.getChild() != null) {
@@ -33,12 +43,6 @@ public class EntityGraphExtractorHandler {
                         .addAttributeNodes(nodeChild.getName());
             }
         }
-
-        log.debug("[{}]: try extract with [{}] parameters for [{}]", id, nodes.size(), eClass.getName());
-
-        return entityManager.find(eClass,
-                id,
-                Collections.singletonMap("javax.persistence.loadgraph", entityGraph));
     }
 
 }
