@@ -1,70 +1,18 @@
 package com.company.app.entitygraphextractor.example.context;
 
-import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.example.common.AbstractContext;
-import com.company.app.entitygraphextractor.example.common.Node;
 
-public class ChatContext extends AbstractContext<Chat> {
+public abstract class ChatContext<E> extends AbstractContext<E> {
 
-    private final Chat chat;
 
-    private ChatContext(Chat chat) {
-        this.chat = chat;
-    }
+    public abstract ChatContextImpl withUserInfo();
 
-    public static ChatContext of(Chat chat) {
-        return new ChatContext(chat);
-    }
+    public abstract ChatContextImpl withHistories();
 
-    @Override
-    public Class<Chat> getClass_() {
-        return Chat.class;
-    }
+    public abstract ChatContextImpl withSubscriptions();
 
-    @Override
-    public Long getId_() {
-        return chat.getId();
-    }
+    public abstract ChatContextImpl withSubscriptionsAndChats();
 
-    public ChatContext withUserInfo() {
-        nodes.add(Node.builder()
-                .name("userInfo")
-                .build());
-        return this;
-    }
-
-    public ChatContext withHistories() {
-        nodes.add(Node.builder()
-                .name("histories")
-                .build());
-        return this;
-    }
-
-    public ChatContext withSubscriptions() {
-        nodes.add(Node.builder()
-                .name("subscriptions")
-                .build());
-        return this;
-    }
-
-    public ChatContext withSubscriptionsAndChats() {
-        nodes.add(Node.builder()
-                .name("subscriptions")
-                .child(Node.builder()
-                        .name("chats")
-                        .build())
-                .build());
-        return this;
-    }
-
-    public ChatContext withSubscriptionsAndSubscriptionInfos() {
-        nodes.add(Node.builder()
-                .name("subscriptions")
-                .child(Node.builder()
-                        .name("subscriptionInfos")
-                        .build())
-                .build());
-        return this;
-    }
+    public abstract ChatContextImpl withSubscriptionsAndSubscriptionInfos();
 
 }
