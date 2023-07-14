@@ -2,18 +2,18 @@ package com.company.app.entitygraphextractor.example.context;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.example.common.AbstractContext;
+import com.company.app.entitygraphextractor.example.common.EntityGraphExtractorHandler;
 import com.company.app.entitygraphextractor.example.common.Node;
 
 public class ChatContext extends AbstractContext<Chat> {
 
-    private final Chat chat;
-
-    private ChatContext(Chat chat) {
-        this.chat = chat;
+    private ChatContext(Chat chat, EntityGraphExtractorHandler handler) {
+        this.entity = chat;
+        this.handler = handler;
     }
 
-    public static ChatContext of(Chat chat) {
-        return new ChatContext(chat);
+    public static ChatContext of(Chat chat, EntityGraphExtractorHandler handler) {
+        return new ChatContext(chat, handler);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ChatContext extends AbstractContext<Chat> {
 
     @Override
     public Long getId_() {
-        return chat.getId();
+        return entity.getId();
     }
 
     public ChatContext withUserInfo() {

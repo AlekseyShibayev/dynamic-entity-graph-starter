@@ -15,9 +15,7 @@ public class EntityGraphExtractor {
     private EntityGraphExtractorHandler entityGraphExtractorHandler;
 
     public ChatContext createContext(Chat chat) {
-        ChatContext extractorContext = ChatContext.of(chat);
-        extractorContext.setMainHandler(entityGraphExtractorHandler);
-        return extractorContext;
+        return ChatContext.of(chat, entityGraphExtractorHandler);
     }
 
 }
