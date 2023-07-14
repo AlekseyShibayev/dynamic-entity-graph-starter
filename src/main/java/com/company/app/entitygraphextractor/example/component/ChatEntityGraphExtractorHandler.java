@@ -2,6 +2,7 @@ package com.company.app.entitygraphextractor.example.component;
 
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
+import com.company.app.entitygraphextractor.example.data.Node;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,12 +34,12 @@ public class ChatEntityGraphExtractorHandler {
     }
 
     private void prepareGraph(ChatEntityGraphExtractorContext context, EntityGraph<Chat> entityGraph) {
-        for (ChatEntityGraphExtractorNode node : context.getParameters()) {
-            entityGraph.addAttributeNodes(node.getNodeName());
+        for (Node node : context.getParameters()) {
+            entityGraph.addAttributeNodes(node.getName());
             if (node.getChild() != null) {
-                ChatEntityGraphExtractorNode nodeChild = node.getChild();
-                entityGraph.addSubgraph(node.getNodeName())
-                        .addAttributeNodes(nodeChild.getNodeName());
+                Node nodeChild = node.getChild();
+                entityGraph.addSubgraph(node.getName())
+                        .addAttributeNodes(nodeChild.getName());
             }
         }
     }

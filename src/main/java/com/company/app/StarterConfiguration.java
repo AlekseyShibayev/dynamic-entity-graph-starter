@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 //@Configuration
 //@ConfigurationPropertiesScan
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication // для отладки пусть побудет спринг бутовой аппликацией
 public class StarterConfiguration {
 
     public static void main(String[] args) {

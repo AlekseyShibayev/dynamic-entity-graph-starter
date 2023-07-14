@@ -80,12 +80,26 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
 
     @SneakyThrows
     @Test
-    void can_extract_collection_and_another_collection() {
+    void can_extract_collection_and_another_collection_with_transaction() {
         Chat chat = testFactory.createChatContext()
                 .withSubscriptionDefault()
                 .withHistoryDefault()
                 .save();
         Assertions.assertDoesNotThrow(() -> testFactory.test(extractor, chat));
+    }
+
+//    @Test
+    void can_extract_collection_and_another_collection_with_out_transaction() {
+        Chat chat = testFactory.createChatContext()
+                .withSubscriptionDefault()
+                .withHistoryDefault()
+                .save();
+
+        Chat extracted = extractor.createContext(chat.getId())
+                .withHistories()
+                .withSubscriptions()
+                .extract();
+        Assertions.assertEquals("default", extracted.getHistories().get(0).getMessage());
     }
 
 }

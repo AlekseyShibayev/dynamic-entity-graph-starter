@@ -1,6 +1,7 @@
 package com.company.app.entitygraphextractor.example.component;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
+import com.company.app.entitygraphextractor.example.data.Node;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class ChatEntityGraphExtractorContext {
     private final Long id;
     private final ChatEntityGraphExtractorHandler handler;
 
-    private final List<ChatEntityGraphExtractorNode> parameters = new ArrayList<>();
+    private final List<Node> parameters = new ArrayList<>();
 
     private ChatEntityGraphExtractorContext(Long id, ChatEntityGraphExtractorHandler handler) {
         this.id = id;
@@ -28,41 +29,41 @@ public class ChatEntityGraphExtractorContext {
     }
 
     public ChatEntityGraphExtractorContext withUserInfo() {
-        parameters.add(ChatEntityGraphExtractorNode.builder()
-                .nodeName("userInfo")
+        parameters.add(Node.builder()
+                .name("userInfo")
                 .build());
         return this;
     }
 
     public ChatEntityGraphExtractorContext withHistories() {
-        parameters.add(ChatEntityGraphExtractorNode.builder()
-                .nodeName("histories")
+        parameters.add(Node.builder()
+                .name("histories")
                 .build());
         return this;
     }
 
     public ChatEntityGraphExtractorContext withSubscriptions() {
-        parameters.add(ChatEntityGraphExtractorNode.builder()
-                .nodeName("subscriptions")
+        parameters.add(Node.builder()
+                .name("subscriptions")
                 .build());
         return this;
     }
 
     public ChatEntityGraphExtractorContext withSubscriptionsAndChats() {
-        parameters.add(ChatEntityGraphExtractorNode.builder()
-                .nodeName("subscriptions")
-                .child(ChatEntityGraphExtractorNode.builder()
-                        .nodeName("chats")
+        parameters.add(Node.builder()
+                .name("subscriptions")
+                .child(Node.builder()
+                        .name("chats")
                         .build())
                 .build());
         return this;
     }
 
     public ChatEntityGraphExtractorContext withSubscriptionsAndSubscriptionInfos() {
-        parameters.add(ChatEntityGraphExtractorNode.builder()
-                .nodeName("subscriptions")
-                .child(ChatEntityGraphExtractorNode.builder()
-                        .nodeName("subscriptionInfos")
+        parameters.add(Node.builder()
+                .name("subscriptions")
+                .child(Node.builder()
+                        .name("subscriptionInfos")
                         .build())
                 .build());
         return this;
