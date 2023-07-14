@@ -1,4 +1,4 @@
-package com.company.app.entitygraphextractor.example.common;
+package com.company.app.entitygraphextractor.example.common.data;
 
 import lombok.Builder;
 import lombok.Data;

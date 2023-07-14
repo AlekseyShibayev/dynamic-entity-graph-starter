@@ -1,8 +1,8 @@
 package com.company.app.entitygraphextractor.example.temp;
 
-import com.company.app.entitygraphextractor.example.common.Context;
+import com.company.app.entitygraphextractor.example.common.data.EntityGraphExtractorContext;
 
-public abstract class Context_temp<E> implements Context<E> {
+public abstract class Context_temp<E> implements EntityGraphExtractorContext<E> {
 
 //    private final E entity;
 //

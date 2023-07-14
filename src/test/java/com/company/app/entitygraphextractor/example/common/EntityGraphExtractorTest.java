@@ -1,8 +1,7 @@
-package com.company.app.entitygraphextractor.example.context;
+package com.company.app.entitygraphextractor.example.common;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.domain.repository.ChatRepository;
-import com.company.app.entitygraphextractor.example.common.EntityGraphExtractor;
 import com.company.app.infrastructure.SpringBootTestApplicationContext;
 import lombok.SneakyThrows;
 import org.hibernate.LazyInitializationException;
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
+class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
 
     @Autowired
     private EntityGraphExtractor extractor;
@@ -91,8 +90,9 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
         Assertions.assertDoesNotThrow(() -> helper.test(extractor, chat));
     }
 
-    //@Test todo починить!
-    void can_extract_collection_and_another_collection_with_out_transaction() {
+    // todo починить!
+//    @Test
+    void can_extract_collection_and_other_collection_with_out_transaction() {
         Chat chat = testFactory.createChatContext()
                 .withSubscriptionDefault()
                 .withHistoryDefault()

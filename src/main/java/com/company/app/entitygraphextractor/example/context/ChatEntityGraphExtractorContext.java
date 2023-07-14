@@ -1,26 +1,19 @@
 package com.company.app.entitygraphextractor.example.context;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
-import com.company.app.entitygraphextractor.example.common.Context;
-import com.company.app.entitygraphextractor.example.common.EntityGraphExtractorHandler;
-import com.company.app.entitygraphextractor.example.common.Node;
+import com.company.app.entitygraphextractor.example.common.data.AbstractEntityGraphExtractorContext;
+import com.company.app.entitygraphextractor.example.common.data.Node;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ChatContext implements Context<Chat> {
+public class ChatEntityGraphExtractorContext extends AbstractEntityGraphExtractorContext<Chat> {
 
     private final Chat chat;
-    private final EntityGraphExtractorHandler mainHandler;
-    private final List<Node> nodes = new ArrayList<>();
 
-    private ChatContext(Chat chat, EntityGraphExtractorHandler mainHandler) {
+    private ChatEntityGraphExtractorContext(Chat chat) {
         this.chat = chat;
-        this.mainHandler = mainHandler;
     }
 
-    public static ChatContext of(Chat chat, EntityGraphExtractorHandler mainHandler) {
-        return new ChatContext(chat, mainHandler);
+    public static ChatEntityGraphExtractorContext of(Chat chat) {
+        return new ChatEntityGraphExtractorContext(chat);
     }
 
     @Override
@@ -33,38 +26,28 @@ public class ChatContext implements Context<Chat> {
         return chat.getId();
     }
 
-    @Override
-    public List<Node> getNodes_() {
-        return nodes;
-    }
-
-    @Override
-    public Chat extract() {
-        return mainHandler.extract(this);
-    }
-
-    public ChatContext withUserInfo() {
+    public ChatEntityGraphExtractorContext withUserInfo() {
         nodes.add(Node.builder()
                 .name("userInfo")
                 .build());
         return this;
     }
 
-    public ChatContext withHistories() {
+    public ChatEntityGraphExtractorContext withHistories() {
         nodes.add(Node.builder()
                 .name("histories")
                 .build());
         return this;
     }
 
-    public ChatContext withSubscriptions() {
+    public ChatEntityGraphExtractorContext withSubscriptions() {
         nodes.add(Node.builder()
                 .name("subscriptions")
                 .build());
         return this;
     }
 
-    public ChatContext withSubscriptionsAndChats() {
+    public ChatEntityGraphExtractorContext withSubscriptionsAndChats() {
         nodes.add(Node.builder()
                 .name("subscriptions")
                 .child(Node.builder()
@@ -74,7 +57,7 @@ public class ChatContext implements Context<Chat> {
         return this;
     }
 
-    public ChatContext withSubscriptionsAndSubscriptionInfos() {
+    public ChatEntityGraphExtractorContext withSubscriptionsAndSubscriptionInfos() {
         nodes.add(Node.builder()
                 .name("subscriptions")
                 .child(Node.builder()

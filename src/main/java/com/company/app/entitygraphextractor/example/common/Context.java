@@ -1,12 +1,10 @@
 package com.company.app.entitygraphextractor.example.common;
 
-import java.util.List;
+import com.company.app.entitygraphextractor.example.common.data.EntityGraphExtractorContext;
 
-public interface Context<E> {
+@FunctionalInterface
+public interface Context<Entity> {
 
-    Class<E> getClass_();
-    Long getId_();
-    List<Node> getNodes_();
-    E extract();
+    <E> EntityGraphExtractorContext<E> of(Entity context);
 
 }
