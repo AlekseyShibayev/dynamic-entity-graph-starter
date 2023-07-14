@@ -1,4 +1,4 @@
-package com.company.app.entitygraphextractor.example;
+package com.company.app.entitygraphextractor.example.chat;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.domain.repository.ChatRepository;
@@ -15,6 +15,8 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
     private ChatEntityGraphExtractor extractor;
     @Autowired
     private ChatRepository chatRepository;
+    @Autowired
+    private ChatEntityGraphExtractorTestHelper helper;
 
     @Test
     void exception_must_be_thrown() {
@@ -31,7 +33,7 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
                 .withUserInfoDefault()
                 .save();
 
-        Chat extracted = extractor.createContext(chat.getId())
+        Chat extracted = extractor.createContext(chat)
                 .withUserInfo()
                 .extract();
         Assertions.assertEquals("default", extracted.getUserInfo().getName());
@@ -44,7 +46,7 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
                 .withSubscriptionDefault()
                 .save();
 
-        Chat extracted = extractor.createContext(chat.getId())
+        Chat extracted = extractor.createContext(chat)
                 .withSubscriptions()
                 .extract();
         Assertions.assertEquals("default", extracted.getSubscriptions().stream().findFirst().get().getType());
@@ -57,7 +59,7 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
                 .withHistoryDefault()
                 .save();
 
-        Chat extracted = extractor.createContext(chat.getId())
+        Chat extracted = extractor.createContext(chat)
                 .withHistories()
                 .extract();
         Assertions.assertEquals("default", extracted.getHistories().get(0).getMessage());
@@ -70,7 +72,7 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
                 .withSubscriptionAndSubscriptionInfoDefault()
                 .save();
 
-        Chat extracted = extractor.createContext(chat.getId())
+        Chat extracted = extractor.createContext(chat)
                 .withSubscriptionsAndSubscriptionInfos()
                 .withUserInfo()
                 .extract();
@@ -85,17 +87,17 @@ class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
                 .withSubscriptionDefault()
                 .withHistoryDefault()
                 .save();
-        Assertions.assertDoesNotThrow(() -> testFactory.test(extractor, chat));
+        Assertions.assertDoesNotThrow(() -> helper.test(extractor, chat));
     }
 
-//    @Test
+    //@Test todo починить!
     void can_extract_collection_and_another_collection_with_out_transaction() {
         Chat chat = testFactory.createChatContext()
                 .withSubscriptionDefault()
                 .withHistoryDefault()
                 .save();
 
-        Chat extracted = extractor.createContext(chat.getId())
+        Chat extracted = extractor.createContext(chat)
                 .withHistories()
                 .withSubscriptions()
                 .extract();
