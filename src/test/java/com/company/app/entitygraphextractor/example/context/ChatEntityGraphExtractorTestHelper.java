@@ -1,7 +1,8 @@
-package com.company.app.entitygraphextractor.example.chat;
+package com.company.app.entitygraphextractor.example.context;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.domain.repository.ChatRepository;
+import com.company.app.entitygraphextractor.example.common.EntityGraphExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,7 @@ public class ChatEntityGraphExtractorTestHelper {
     private ChatRepository chatRepository;
 
     @Transactional
-    public Chat test(ChatEntityGraphExtractor extractor, Chat chat) {
+    public Chat test(EntityGraphExtractor extractor, Chat chat) {
         chatRepository.findById(chat.getId());
 
         Chat extracted = extractor.createContext(chat)

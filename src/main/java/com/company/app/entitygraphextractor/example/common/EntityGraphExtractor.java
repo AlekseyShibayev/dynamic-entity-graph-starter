@@ -1,14 +1,12 @@
-package com.company.app.entitygraphextractor.example.chat;
+package com.company.app.entitygraphextractor.example.common;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
-import com.company.app.entitygraphextractor.example.common.EntityGraphExtractorHandler;
-import lombok.extern.slf4j.Slf4j;
+import com.company.app.entitygraphextractor.example.context.ChatContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Slf4j
 @Component
-public class ChatEntityGraphExtractor {
+public class EntityGraphExtractor {
 
     @Autowired
     private EntityGraphExtractorHandler mainHandler;

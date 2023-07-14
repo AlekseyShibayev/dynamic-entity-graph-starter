@@ -9,7 +9,6 @@ import com.company.app.entitygraphextractor.domain.repository.HistoryRepository;
 import com.company.app.entitygraphextractor.domain.repository.SubscriptionInfoRepository;
 import com.company.app.entitygraphextractor.domain.repository.SubscriptionRepository;
 import com.company.app.entitygraphextractor.domain.repository.UserInfoRepository;
-import com.company.app.entitygraphextractor.example.chat.ChatEntityGraphExtractor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

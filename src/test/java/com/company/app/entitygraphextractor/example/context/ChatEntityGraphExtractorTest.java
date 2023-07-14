@@ -1,7 +1,8 @@
-package com.company.app.entitygraphextractor.example.chat;
+package com.company.app.entitygraphextractor.example.context;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.domain.repository.ChatRepository;
+import com.company.app.entitygraphextractor.example.common.EntityGraphExtractor;
 import com.company.app.infrastructure.SpringBootTestApplicationContext;
 import lombok.SneakyThrows;
 import org.hibernate.LazyInitializationException;
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 class ChatEntityGraphExtractorTest extends SpringBootTestApplicationContext {
 
     @Autowired
-    private ChatEntityGraphExtractor extractor;
+    private EntityGraphExtractor extractor;
     @Autowired
     private ChatRepository chatRepository;
     @Autowired
