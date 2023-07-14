@@ -2,10 +2,12 @@ package com.company.app.entitygraphextractor.example.common;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.example.common.component.EntityGraphExtractorHandler;
-import com.company.app.entitygraphextractor.example.context.ChatEntityGraphExtractorContext;
+import com.company.app.entitygraphextractor.example.context.chat.ChatEntityGraphExtractorContext;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class EntityGraphExtractor {
 
@@ -18,10 +20,12 @@ public class EntityGraphExtractor {
         return extractorContext;
     }
 
-//    public <E> EntityGraphExtractorContext<E> createContext_(Chat chat) {
-//        context.of()
-//        contextOf.of()
-//        return ChatEntityGraphExtractorContext.of(chat, mainHandler);
+//    public <E> AbstractEntityGraphExtractorContext<E> createContext(ContextAdapter<E> context) {
+//        AbstractEntityGraphExtractorContext<E> abstractEntityGraphExtractorContext = context.to();
+//        abstractEntityGraphExtractorContext.setMainHandler(mainHandler);
+//
+//
+//        return abstractEntityGraphExtractorContext;
 //    }
 
 }

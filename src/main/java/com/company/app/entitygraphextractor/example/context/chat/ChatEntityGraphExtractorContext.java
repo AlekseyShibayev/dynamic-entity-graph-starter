@@ -1,4 +1,4 @@
-package com.company.app.entitygraphextractor.example.context;
+package com.company.app.entitygraphextractor.example.context.chat;
 
 import com.company.app.entitygraphextractor.domain.entity.Chat;
 import com.company.app.entitygraphextractor.example.common.data.AbstractEntityGraphExtractorContext;

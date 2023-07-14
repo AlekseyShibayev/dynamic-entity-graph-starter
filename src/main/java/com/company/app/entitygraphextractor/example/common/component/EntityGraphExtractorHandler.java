@@ -1,7 +1,7 @@
 package com.company.app.entitygraphextractor.example.common.component;
 
-import com.company.app.entitygraphextractor.example.common.data.Node;
 import com.company.app.entitygraphextractor.example.common.data.EntityGraphExtractorContext;
+import com.company.app.entitygraphextractor.example.common.data.Node;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
