@@ -1,4 +1,4 @@
-package com.company.app.entitygraphextractor.generator;
+package com.company.app.entitygraphextractor.generator_todo;
 
 import com.google.common.collect.Maps;
 import com.google.common.reflect.ClassPath;

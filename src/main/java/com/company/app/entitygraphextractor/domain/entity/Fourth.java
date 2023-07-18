@@ -22,20 +22,19 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "SUBSCRIPTION_INFO")
-public class SubscriptionInfo {
+@Table(name = "FOURTH")
+public class Fourth {
 
     @Id
     @GeneratedValue
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @Column(name = "TYPE")
-    private String type;
+    @Column(name = "NAME")
+    private String name;
 
     @ManyToOne
-    @JoinColumn(name = "SUBSCRIPTION_ID", nullable = false)
-    private Subscription subscription;
-
+    @JoinColumn(name = "THIRD_ID", nullable = false)
+    private Third third;
 
 }

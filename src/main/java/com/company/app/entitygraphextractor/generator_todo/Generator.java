@@ -1,15 +1,13 @@
-package com.company.app.entitygraphextractor.generator;
+package com.company.app.entitygraphextractor.generator_todo;
 
 import com.google.common.reflect.ClassPath;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Component
 public class Generator {
 
     @SneakyThrows

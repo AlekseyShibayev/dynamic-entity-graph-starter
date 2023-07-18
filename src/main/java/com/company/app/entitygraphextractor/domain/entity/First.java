@@ -13,8 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -25,21 +26,22 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "SUBSCRIPTION")
-public class Subscription {
+@Table(name = "FIRST")
+public class First {
 
     @Id
     @GeneratedValue
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @Column(name = "TYPE")
-    private String type;
+    @Column(name = "NAME")
+    private String name;
 
-    @OneToMany(mappedBy = "subscription", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<SubscriptionInfo> subscriptionInfos;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FIRST_INFO_ID")
+    private FirstInfo firstInfo;
 
-    @ManyToMany(mappedBy = "subscriptions")
-    private List<Chat> chats;
+    @OneToMany(mappedBy = "first", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Second> seconds;
 
 }

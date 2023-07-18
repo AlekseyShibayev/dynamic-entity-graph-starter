@@ -1,23 +1,23 @@
 package com.company.app.entitygraphextractor.example.context;
 
-import com.company.app.entitygraphextractor.domain.entity.Chat;
+import com.company.app.entitygraphextractor.domain.entity.First;
 import com.company.app.entitygraphextractor.example.common.AbstractContext;
 import com.company.app.entitygraphextractor.example.common.EntityGraphExtractorHandler;
 
-public class ChatContext extends AbstractContext<Chat> {
+public class ChatContext extends AbstractContext<First> {
 
-    private ChatContext(Chat chat, EntityGraphExtractorHandler handler) {
+    private ChatContext(First chat, EntityGraphExtractorHandler handler) {
         this.entity = chat;
         this.handler = handler;
     }
 
-    public static ChatContext of(Chat chat, EntityGraphExtractorHandler handler) {
+    public static ChatContext of(First chat, EntityGraphExtractorHandler handler) {
         return new ChatContext(chat, handler);
     }
 
     @Override
-    public Class<Chat> getClass_() {
-        return Chat.class;
+    public Class<First> getClass_() {
+        return First.class;
     }
 
     @Override

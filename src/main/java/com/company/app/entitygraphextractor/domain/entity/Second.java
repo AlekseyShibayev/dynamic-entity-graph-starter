@@ -7,12 +7,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,24 +26,22 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "USER_INFO")
-public class UserInfo {
+@Table(name = "SECOND")
+public class Second {
 
     @Id
     @GeneratedValue
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @OneToOne(mappedBy = "userInfo")
-    private Chat chat;
-
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "ROLE")
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "FIRST_ID", nullable = false)
+    private First first;
 
-    @Column(name = "GENDER")
-    private String gender;
+    @OneToMany(mappedBy = "second", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Third> thirds;
 
 }

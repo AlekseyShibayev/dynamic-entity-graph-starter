@@ -1,6 +1,6 @@
 package com.company.app.entitygraphextractor.example;
 
-import com.company.app.entitygraphextractor.domain.entity.Chat;
+import com.company.app.entitygraphextractor.domain.entity.First;
 import com.company.app.entitygraphextractor.example.common.EntityGraphExtractorHandler;
 import com.company.app.entitygraphextractor.example.context.ChatContext;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ public class EntityGraphExtractor {
     @Autowired
     private EntityGraphExtractorHandler entityGraphExtractorHandler;
 
-    public ChatContext createContext(Chat chat) {
+    public ChatContext createContext(First chat) {
         return ChatContext.of(chat, entityGraphExtractorHandler);
     }
 

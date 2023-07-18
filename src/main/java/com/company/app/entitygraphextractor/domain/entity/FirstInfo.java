@@ -7,14 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,27 +25,18 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "HISTORY")
-public class History {
+@Table(name = "FIRST")
+public class FirstInfo {
 
     @Id
     @GeneratedValue
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "CHAT_ID", nullable = false)
-    private Chat chat;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
-    @Column(name = "SOURCE")
-    private String source;
+    @OneToOne(mappedBy = "firstInfo")
+    private First first;
 
-    @Column(name = "TARGET")
-    private String target;
-
-    @Column(name = "MESSAGE")
-    private String message;
-
-    @Column(name = "DATE")
-    private Date date;
 }
