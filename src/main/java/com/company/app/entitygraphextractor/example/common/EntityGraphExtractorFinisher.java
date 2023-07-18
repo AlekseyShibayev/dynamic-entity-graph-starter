@@ -24,7 +24,6 @@ public class EntityGraphExtractorFinisher {
         List<Node> nodes = context.getNodes_();
 
         EntityGraph<E> entityGraph = entityManager.createEntityGraph(eClass);
-
         prepareGraph(nodes, entityGraph);
 
         log.debug("[{}]: try extract with [{}] parameters for [{}]", id, nodes.size(), eClass.getName());

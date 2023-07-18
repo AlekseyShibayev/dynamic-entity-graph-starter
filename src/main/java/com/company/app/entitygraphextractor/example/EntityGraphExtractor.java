@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 public class EntityGraphExtractor {
 
     @Autowired
-    private EntityGraphExtractorFinisher entityGraphExtractorHandler;
+    private EntityGraphExtractorFinisher entityGraphExtractorFinisher;
 
     public FirstContext createContext(First first) {
-        return FirstContext.of(first, entityGraphExtractorHandler);
+        return FirstContext.of(first, entityGraphExtractorFinisher);
     }
 
 }

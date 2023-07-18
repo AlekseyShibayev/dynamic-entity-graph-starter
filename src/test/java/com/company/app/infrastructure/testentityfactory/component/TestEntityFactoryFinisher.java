@@ -26,7 +26,7 @@ public class TestEntityFactoryFinisher {
     private final FourthRepository fourthRepository;
 
     @Transactional
-    public List<First> create(Context firstContext) {
+    public List<First> create(FirstContext firstContext) {
         List<First> result = new ArrayList<>();
         for (int i = 0; i < firstContext.getAmount(); i++) {
             result.add(createOne(firstContext));
@@ -34,7 +34,7 @@ public class TestEntityFactoryFinisher {
         return result;
     }
 
-    private First createOne(Context firstContext) {
+    private First createOne(FirstContext firstContext) {
         First first = First.builder()
                 .name(String.valueOf(atomicInteger.getAndAdd(1)))
                 .seconds(Lists.newArrayList())

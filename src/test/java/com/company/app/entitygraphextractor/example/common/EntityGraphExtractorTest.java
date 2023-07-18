@@ -49,7 +49,7 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
         First extracted = extractor.createContext(first)
                 .withSeconds()
                 .extract();
-        Assertions.assertEquals("second", extracted.getSeconds().stream().findFirst().get().getName());
+        Assertions.assertEquals("second_0", extracted.getSeconds().stream().findFirst().get().getName());
     }
 
     @Test
@@ -63,7 +63,22 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
                 .withFirstInfo()
                 .withSeconds()
                 .extract();
-        Assertions.assertEquals("second", extracted.getSeconds().stream().findFirst().get()
+        Assertions.assertEquals("second_0", extracted.getSeconds().stream().findFirst().get()
+                .getName());
+    }
+
+    @Test
+    void can_extract_collection_depth_1_and_object_depth_1_many() {
+        First first = testEntityFactory.createEntityContext()
+                .withFirstInfo("default")
+                .withSecond("second", 100)
+                .createOne();
+
+        First extracted = extractor.createContext(first)
+                .withFirstInfo()
+                .withSeconds()
+                .extract();
+        Assertions.assertEquals("second_0", extracted.getSeconds().stream().findFirst().get()
                 .getName());
     }
 

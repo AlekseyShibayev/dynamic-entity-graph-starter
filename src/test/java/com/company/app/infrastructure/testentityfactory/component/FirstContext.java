@@ -15,7 +15,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class Context {
+public class FirstContext {
 
     private First first;
     private List<CreateAction> actionsList;
@@ -38,18 +38,23 @@ public class Context {
         return testEntityFactoryFinisher.create(this);
     }
 
-    public Context with(CreateAction firstActions) {
+    public FirstContext with(CreateAction firstActions) {
         this.actionsList.add(firstActions);
         return this;
     }
 
-    public Context withFirstInfo(String description) {
+    public FirstContext withFirstInfo(String description) {
         this.actionsList.add(FirstInfoCreateAction.of(description));
         return this;
     }
 
-    public Context withSecond(String name) {
+    public FirstContext withSecond(String name) {
         this.actionsList.add(SecondCreateAction.of(name));
+        return this;
+    }
+
+    public FirstContext withSecond(String name, int amount) {
+        this.actionsList.add(SecondCreateAction.of(name, amount));
         return this;
     }
 

@@ -20,8 +20,8 @@ public class TestEntityFactoryRegistry {
     private final ThirdRepository thirdRepository;
     private final FourthRepository fourthRepository;
 
-    public Context getContext() {
-        return Context.builder()
+    public FirstContext getFirstContext() {
+        return FirstContext.builder()
                 .actionsList(Lists.newArrayList())
 
                 .testEntityFactoryFinisher(testEntityFactoryFinisher)
