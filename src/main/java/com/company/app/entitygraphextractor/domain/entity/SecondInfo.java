@@ -21,8 +21,8 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "FIRST_INFO")
-public class FirstInfo {
+@Table(name = "SECOND_INFO")
+public class SecondInfo {
 
     @Id
     @GeneratedValue
@@ -32,7 +32,7 @@ public class FirstInfo {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @OneToOne(mappedBy = "firstInfo")
-    private First first;
+    @OneToOne(mappedBy = "secondInfo")
+    private Second second;
 
 }

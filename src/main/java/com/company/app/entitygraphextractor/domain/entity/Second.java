@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -40,6 +41,10 @@ public class Second {
     @ManyToOne
     @JoinColumn(name = "FIRST_ID", nullable = false)
     private First first;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "SECOND_INFO_ID")
+    private SecondInfo secondInfo;
 
     @OneToMany(mappedBy = "second", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Third> thirds;

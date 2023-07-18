@@ -28,12 +28,12 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
     }
 
     @Test
-    void extractor_help_with_lazyInitException() {
-        First chat = testEntityFactory.createEntityContext()
+    void can_extract_objects_depth_1() {
+        First first = testEntityFactory.createEntityContext()
                 .withFirstInfo("default")
                 .createOne();
 
-        First extracted = extractor.createContext(chat)
+        First extracted = extractor.createContext(first)
                 .withFirstInfo()
                 .extract();
 
@@ -41,44 +41,32 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
     }
 
     @Test
-    void can_extract_collection_subscriptions() {
-        First chat = testEntityFactory.createEntityContext()
+    void can_extract_collections_depth_1() {
+        First first = testEntityFactory.createEntityContext()
                 .withSecond("second")
                 .createOne();
 
-        First extracted = extractor.createContext(chat)
+        First extracted = extractor.createContext(first)
                 .withSeconds()
                 .extract();
         Assertions.assertEquals("second", extracted.getSeconds().stream().findFirst().get().getName());
     }
 
-//    @Test
-//    void can_extract_collection_histories() {
-//        First chat = testEntityFactory.createEntityContext()
-//                .withHistoryDefault()
-//                .save();
-//
-//        First extracted = extractor.createContext(chat)
-//                .withHistories()
-//                .extract();
-//        Assertions.assertEquals("default", extracted.getHistories().get(0).getMessage());
-//    }
-//
-//    @Test
-//    void can_extract_collection_depth_2() {
-//        First chat = testEntityFactory.createEntityContext()
-//                .withUserInfoDefault()
-//                .withSubscriptionAndSubscriptionInfoDefault()
-//                .save();
-//
-//        First extracted = extractor.createContext(chat)
-//                .withSubscriptionsAndSubscriptionInfos()
-//                .withUserInfo()
-//                .extract();
-//        Assertions.assertEquals("default", extracted.getSubscriptions().stream().findFirst().get()
-//                .getSubscriptionInfos().get(0).getType());
-//    }
-//
+    @Test
+    void can_extract_collection_depth_1_and_object_depth_1() {
+        First first = testEntityFactory.createEntityContext()
+                .withFirstInfo("default")
+                .withSecond("second")
+                .createOne();
+
+        First extracted = extractor.createContext(first)
+                .withFirstInfo()
+                .withSeconds()
+                .extract();
+        Assertions.assertEquals("second", extracted.getSeconds().stream().findFirst().get()
+                .getName());
+    }
+
 //    @SneakyThrows
 //    @Test
 //    void can_extract_collection_and_another_collection_with_transaction() {

@@ -35,4 +35,8 @@ public class FirstContext extends AbstractContext<First> {
         return this;
     }
 
+    public FirstContext withSecondsAndSecondInfo() {
+        addParameter("seconds", "secondInfo");
+        return this;
+    }
 }
