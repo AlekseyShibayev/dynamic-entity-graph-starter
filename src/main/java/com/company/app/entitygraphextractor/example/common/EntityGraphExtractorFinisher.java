@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @Repository
-public class EntityGraphExtractorHandler {
+public class EntityGraphExtractorFinisher {
 
     @Autowired
     private EntityManager entityManager;

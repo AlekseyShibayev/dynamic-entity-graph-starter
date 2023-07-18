@@ -31,19 +31,19 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
         Assertions.assertThrows(LazyInitializationException.class, () -> firstRepository.findById(first.getId()).get().getFirstInfo().getDescription());
     }
 
-//    @Test
-//    void extractor_help_with_lazyInitException() {
-//        First chat = testEntityFactory.createEntityContext()
-//                .withUserInfoDefault()
-//                .save();
-//
-//        First extracted = extractor.createContext(chat)
-//                .withUserInfo()
-//                .extract();
-//        Assertions.assertEquals("default", extracted.getUserInfo().getName());
-//        Assertions.assertThrows(LazyInitializationException.class, () -> chatRepository.findById(chat.getId()).get().getUserInfo().getName());
-//    }
-//
+    @Test
+    void extractor_help_with_lazyInitException() {
+        First chat = testEntityFactory.createEntityContext()
+                .withFirstInfo("default")
+                .createOne();
+
+        First extracted = extractor.createContext(chat)
+                .withFirstInfo()
+                .extract();
+
+        Assertions.assertEquals("default", extracted.getFirstInfo().getDescription());
+    }
+
 //    @Test
 //    void can_extract_collection_subscriptions() {
 //        First chat = testEntityFactory.createEntityContext()
