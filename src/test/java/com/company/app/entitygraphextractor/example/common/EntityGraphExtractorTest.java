@@ -1,13 +1,9 @@
 package com.company.app.entitygraphextractor.example.common;
 
 import com.company.app.entitygraphextractor.domain.entity.First;
-import com.company.app.entitygraphextractor.domain.entity.FirstInfo;
-import com.company.app.entitygraphextractor.domain.repository.FirstInfoRepository;
 import com.company.app.entitygraphextractor.domain.repository.FirstRepository;
 import com.company.app.entitygraphextractor.example.EntityGraphExtractor;
 import com.company.app.infrastructure.SpringBootTestApplicationContext;
-import com.company.app.infrastructure.testentityfactory.component.CreateAction;
-import com.company.app.infrastructure.testentityfactory.component.Context;
 import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -44,19 +40,18 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
         Assertions.assertEquals("default", extracted.getFirstInfo().getDescription());
     }
 
-//    @Test
-//    void can_extract_collection_subscriptions() {
-//        First chat = testEntityFactory.createEntityContext()
-//                .withSubscriptionDefault()
-//                .save();
-//
-//        First extracted = extractor.createContext(chat)
-//                .withSubscriptions()
-//                .extract();
-//        Assertions.assertEquals("default", extracted.getSubscriptions().stream().findFirst().get().getType());
-//        Assertions.assertThrows(LazyInitializationException.class, () -> extracted.getSubscriptions().stream().findFirst().get().getChats().get(0).getChatName());
-//    }
-//
+    @Test
+    void can_extract_collection_subscriptions() {
+        First chat = testEntityFactory.createEntityContext()
+                .withSecond("second")
+                .createOne();
+
+        First extracted = extractor.createContext(chat)
+                .withSeconds()
+                .extract();
+        Assertions.assertEquals("second", extracted.getSeconds().stream().findFirst().get().getName());
+    }
+
 //    @Test
 //    void can_extract_collection_histories() {
 //        First chat = testEntityFactory.createEntityContext()

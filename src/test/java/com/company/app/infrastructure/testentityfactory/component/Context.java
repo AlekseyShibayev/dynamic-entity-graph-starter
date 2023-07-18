@@ -7,6 +7,7 @@ import com.company.app.entitygraphextractor.domain.repository.FourthRepository;
 import com.company.app.entitygraphextractor.domain.repository.SecondRepository;
 import com.company.app.entitygraphextractor.domain.repository.ThirdRepository;
 import com.company.app.infrastructure.testentityfactory.component.impl.FirstInfoCreateAction;
+import com.company.app.infrastructure.testentityfactory.component.impl.SecondCreateAction;
 import lombok.Builder;
 import lombok.Data;
 
@@ -44,6 +45,11 @@ public class Context {
 
     public Context withFirstInfo(String description) {
         this.actionsList.add(FirstInfoCreateAction.of(description));
+        return this;
+    }
+
+    public Context withSecond(String name) {
+        this.actionsList.add(SecondCreateAction.of(name));
         return this;
     }
 
