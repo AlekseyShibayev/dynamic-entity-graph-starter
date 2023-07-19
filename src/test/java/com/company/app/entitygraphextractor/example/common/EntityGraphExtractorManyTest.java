@@ -13,24 +13,38 @@ import java.util.List;
 class EntityGraphExtractorManyTest extends SpringBootTestApplicationContext {
 
     @Autowired
-    private EntityGraphExtractor extractor;
+    private EntityGraphExtractor entityGraphExtractor;
     @Autowired
     private FirstRepository firstRepository;
     @Autowired
     private ChatEntityGraphExtractorTestHelper helper;
 
     @Test
-    void can_extract_many() {
+    void can_extract_many_10() {
         List<First> firsts = testEntityFactory.createEntityContext()
                 .withFirstInfo("default")
                 .createMany(10);
 
-        List<First> extracted = extractor.createContext(firsts)
+        List<First> extracted = entityGraphExtractor.createContext(firsts)
                 .withFirstInfo()
                 .extractAll();
         Assertions.assertEquals("default", extracted.get(0).getFirstInfo().getDescription());
         Assertions.assertEquals("default", extracted.get(5).getFirstInfo().getDescription());
         Assertions.assertEquals("default", extracted.get(9).getFirstInfo().getDescription());
+    }
+
+    @Test
+    void can_extract_many_1000() {
+        List<First> firsts = testEntityFactory.createEntityContext()
+                .withFirstInfo("default")
+                .createMany(1000);
+
+        List<First> extracted = entityGraphExtractor.createContext(firsts)
+                .withFirstInfo()
+                .extractAll();
+        Assertions.assertEquals("default", extracted.get(0).getFirstInfo().getDescription());
+        Assertions.assertEquals("default", extracted.get(555).getFirstInfo().getDescription());
+        Assertions.assertEquals("default", extracted.get(999).getFirstInfo().getDescription());
     }
 
 }

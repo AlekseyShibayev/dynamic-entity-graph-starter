@@ -2,17 +2,15 @@ package com.company.app.entitygraphextractor.example.common;
 
 import java.util.List;
 
-interface Context<E> {
+interface EntityGraphExtractorContext<E> {
 
     Class<E> getClass_();
-
-    Long getId_();
 
     Long getId_(E e);
 
     List<E> getEntities_();
 
-    List<Node> getNodes_();
+    List<EntityGraphExtractorNode> getNodes_();
 
     E extractOne();
 

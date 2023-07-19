@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Node {
+public class EntityGraphExtractorNode {
 
     private String name;
-    private Node child;
+    private EntityGraphExtractorNode child;
 
 }
