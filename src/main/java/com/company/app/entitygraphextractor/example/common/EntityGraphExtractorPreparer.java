@@ -7,14 +7,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Repository
 public class EntityGraphExtractorPreparer {
 
-    public <E>EntityGraph<E> getEntityGraph(EntityGraphExtractorContext<E> context, EntityManager em) {
+    public <E> EntityGraph<E> getEntityGraph(EntityGraphExtractorContext<E> context, EntityManager em) {
         Class<E> eClass = context.getClass_();
         List<EntityGraphExtractorNode> nodes = context.getNodes_();
 
@@ -35,7 +35,7 @@ public class EntityGraphExtractorPreparer {
         }
     }
 
-    public  <E> String getFieldNameWithId(EntityGraphExtractorContext<E> context) {
+    public <E> String getFieldNameWithId(EntityGraphExtractorContext<E> context) {
         List<E> entities = context.getEntities_();
         E entity = entities.get(0);
         Class<?> aClass = entity.getClass();
@@ -51,13 +51,10 @@ public class EntityGraphExtractorPreparer {
                 .anyMatch(declaredAnnotation -> declaredAnnotation.annotationType().equals(Id.class));
     }
 
-    public  <E> Set<Long> getIds(EntityGraphExtractorContext<E> context) {
-        Set<Long> ids = new HashSet<>();
-        for (E entity : context.getEntities_()) {
-            Long id = context.getId_(entity);
-            ids.add(id);
-        }
-        return ids;
+    public <E> Set<Long> getIds(EntityGraphExtractorContext<E> context) {
+        return context.getEntities_().stream()
+                .map(context::getId_)
+                .collect(Collectors.toSet());
     }
 
 }

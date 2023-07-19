@@ -26,7 +26,7 @@ public class SecondCreateAction implements CreateAction {
         SecondRepository secondRepository = context.getSecondRepository();
 
         List<Second> secondList = get(first);
-        secondRepository.saveAll( secondList);
+        secondRepository.saveAll(secondList);
 
         List<Second> seconds = first.getSeconds();
         seconds.addAll(secondList);
@@ -48,6 +48,7 @@ public class SecondCreateAction implements CreateAction {
     public static SecondCreateAction of(String name) {
         return SecondCreateAction.of(name, 1);
     }
+
     public static SecondCreateAction of(String name, int amount) {
         return SecondCreateAction.builder()
                 .name(name)
