@@ -7,10 +7,11 @@
 
 Этот класс, должен предоставлять апи вида.
 
-Entity entity = entityGraphExtractor.createContext(entity.getId)
+Entity entity = entityGraphExtractor.createContext(*)
 .with...
 .with...And...
 .with...And...And...
 .extract
 
 При этом под капотом, должен собираться entity graph
+а так же, чтобы работало с коллекциями id'шников сущностей
