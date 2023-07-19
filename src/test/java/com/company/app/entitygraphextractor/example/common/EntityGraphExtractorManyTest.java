@@ -36,15 +36,19 @@ class EntityGraphExtractorManyTest extends SpringBootTestApplicationContext {
     @Test
     void can_extract_many_1000() {
         List<First> firsts = testEntityFactory.createEntityContext()
+                .withSecond("name", 10)
                 .withFirstInfo("default")
                 .createMany(1000);
 
         List<First> extracted = entityGraphExtractor.createContext(firsts)
+                .withSeconds()
                 .withFirstInfo()
                 .extractAll();
         Assertions.assertEquals("default", extracted.get(0).getFirstInfo().getDescription());
         Assertions.assertEquals("default", extracted.get(555).getFirstInfo().getDescription());
         Assertions.assertEquals("default", extracted.get(999).getFirstInfo().getDescription());
+        Assertions.assertEquals("name_0", extracted.get(0).getSeconds().get(0).getName());
+        Assertions.assertEquals("name_9", extracted.get(999).getSeconds().get(9).getName());
     }
 
 }
