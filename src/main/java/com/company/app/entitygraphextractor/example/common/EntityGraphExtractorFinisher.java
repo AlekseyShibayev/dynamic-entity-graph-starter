@@ -12,7 +12,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +28,7 @@ public class EntityGraphExtractorFinisher {
         List<E> entities = context.getEntities_();
         Class<E> eClass = context.getClass_();
 
-        EntityGraph<E> preparedEntityGraph = entityGraphExtractorPreparer.getPreparedEntityGraph(context, entityManager);
+        EntityGraph<E> preparedEntityGraph = entityGraphExtractorPreparer.getEntityGraph(context, entityManager);
 
         return entityManager.find(eClass,
                 context.getId_(entities.get(0)),
@@ -40,30 +39,20 @@ public class EntityGraphExtractorFinisher {
     public <E> List<E> extractAll(EntityGraphExtractorContext<E> context) {
         Class<E> eClass = context.getClass_();
 
-        Set<Long> ids = getIds(context);
+        String idName = entityGraphExtractorPreparer.getFieldNameWithId(context);
+        Set<Long> ids = entityGraphExtractorPreparer.getIds(context);
+        EntityGraph<E> preparedEntityGraph = entityGraphExtractorPreparer.getEntityGraph(context, entityManager);
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-
         CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(eClass);
         Root<E> eRoot = criteriaQuery.from(eClass);
         criteriaQuery.select(eRoot)
-                .where(eRoot.get("id") //todo поковырять рефлекшеном
+                .where(eRoot.get(idName)
                         .in(ids));
-
-        EntityGraph<E> preparedEntityGraph = entityGraphExtractorPreparer.getPreparedEntityGraph(context, entityManager);
 
         TypedQuery<E> typedQuery = entityManager.createQuery(criteriaQuery);
         typedQuery.setHint("javax.persistence.loadgraph", preparedEntityGraph);
         return typedQuery.getResultList();
-    }
-
-    private <E> Set<Long> getIds(EntityGraphExtractorContext<E> context) {
-        Set<Long> ids = new HashSet<>();
-        for (E entity : context.getEntities_()) {
-            Long id = context.getId_(entity);
-            ids.add(id);
-        }
-        return ids;
     }
 
 }
