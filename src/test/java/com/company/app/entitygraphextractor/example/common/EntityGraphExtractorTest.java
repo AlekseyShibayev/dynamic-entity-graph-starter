@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
 
     @Autowired
@@ -35,7 +37,7 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
 
         First extracted = extractor.createContext(first)
                 .withFirstInfo()
-                .extract();
+                .extractOne();
 
         Assertions.assertEquals("default", extracted.getFirstInfo().getDescription());
     }
@@ -48,7 +50,7 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
 
         First extracted = extractor.createContext(first)
                 .withSeconds()
-                .extract();
+                .extractOne();
         Assertions.assertEquals("second_0", extracted.getSeconds().stream().findFirst().get().getName());
     }
 
@@ -62,7 +64,7 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
         First extracted = extractor.createContext(first)
                 .withFirstInfo()
                 .withSeconds()
-                .extract();
+                .extractOne();
         Assertions.assertEquals("second_0", extracted.getSeconds().stream().findFirst().get()
                 .getName());
     }
@@ -77,7 +79,7 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
         First extracted = extractor.createContext(first)
                 .withFirstInfo()
                 .withSeconds()
-                .extract();
+                .extractOne();
         Assertions.assertEquals("second_0", extracted.getSeconds().stream().findFirst().get()
                 .getName());
     }

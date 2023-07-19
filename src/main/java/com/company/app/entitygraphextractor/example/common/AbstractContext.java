@@ -6,12 +6,23 @@ import java.util.List;
 public abstract class AbstractContext<E> implements Context<E> {
 
     protected E entity;
+    protected List<E> entities;
     protected EntityGraphExtractorFinisher finisher;
     protected final List<Node> nodes = new ArrayList<>();
 
     @Override
-    public E extract() {
-        return finisher.extract(this);
+    public E extractOne() {
+        return finisher.extractOne(this);
+    }
+
+    @Override
+    public List<E> extractAll() {
+        return finisher.extractAll(this);
+    }
+
+    @Override
+    public List<E> getEntities_() {
+        return entities;
     }
 
     @Override

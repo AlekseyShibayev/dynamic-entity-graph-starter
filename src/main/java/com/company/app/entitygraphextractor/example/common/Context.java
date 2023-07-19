@@ -8,8 +8,14 @@ interface Context<E> {
 
     Long getId_();
 
+    Long getId_(E e);
+
+    List<E> getEntities_();
+
     List<Node> getNodes_();
 
-    E extract();
+    E extractOne();
+
+    List<E> extractAll();
 
 }

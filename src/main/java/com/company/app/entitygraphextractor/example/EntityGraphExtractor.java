@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Slf4j
 @Component
 public class EntityGraphExtractor {
@@ -16,6 +18,10 @@ public class EntityGraphExtractor {
 
     public FirstContext createContext(First first) {
         return FirstContext.of(first, entityGraphExtractorFinisher);
+    }
+
+    public FirstContext createContext(List<First> firsts) {
+        return FirstContext.of(firsts, entityGraphExtractorFinisher);
     }
 
 }
