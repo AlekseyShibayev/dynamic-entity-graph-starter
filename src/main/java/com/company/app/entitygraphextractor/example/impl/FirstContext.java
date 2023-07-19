@@ -1,4 +1,4 @@
-package com.company.app.entitygraphextractor.example.context;
+package com.company.app.entitygraphextractor.example.impl;
 
 import com.company.app.entitygraphextractor.domain.entity.First;
 import com.company.app.entitygraphextractor.example.common.EntityGraphExtractorAbstractContext;

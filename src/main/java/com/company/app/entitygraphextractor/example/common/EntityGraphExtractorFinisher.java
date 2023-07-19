@@ -1,7 +1,6 @@
 package com.company.app.entitygraphextractor.example.common;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class EntityGraphExtractorFinisher {

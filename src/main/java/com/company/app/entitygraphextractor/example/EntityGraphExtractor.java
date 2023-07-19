@@ -2,7 +2,7 @@ package com.company.app.entitygraphextractor.example;
 
 import com.company.app.entitygraphextractor.domain.entity.First;
 import com.company.app.entitygraphextractor.example.common.EntityGraphExtractorFinisher;
-import com.company.app.entitygraphextractor.example.context.FirstContext;
+import com.company.app.entitygraphextractor.example.impl.FirstContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
