@@ -8,6 +8,9 @@ import com.company.app.entitygraphextractor.domain.repository.SecondRepository;
 import com.company.app.entitygraphextractor.domain.repository.ThirdRepository;
 import com.company.app.infrastructure.testentityfactory.component.impl.FirstInfoCreateAction;
 import com.company.app.infrastructure.testentityfactory.component.impl.SecondCreateAction;
+import com.company.app.infrastructure.testentityfactory.component.impl.SecondInfoCreateAction;
+import com.company.app.infrastructure.testentityfactory.component.impl.ThirdCreateAction;
+import com.company.app.infrastructure.testentityfactory.component.impl.ThirdInfoCreateAction;
 import lombok.Builder;
 import lombok.Data;
 
@@ -22,6 +25,7 @@ public class FirstContext {
     private int amount;
 
     private TestEntityFactoryFinisher testEntityFactoryFinisher;
+    private TestEntityFactoryRegistry testEntityFactoryRegistry;
     private FirstRepository firstRepository;
     private FirstInfoRepository firstInfoRepository;
     private SecondRepository secondRepository;
@@ -57,5 +61,21 @@ public class FirstContext {
         this.actionsList.add(SecondCreateAction.of(name, amount));
         return this;
     }
+
+    public FirstContext withSecondInfo(String description) {
+        this.actionsList.add(SecondInfoCreateAction.of(description));
+        return this;
+    }
+
+    public FirstContext withThird(String name, int amount) {
+        this.actionsList.add(ThirdCreateAction.of(name, amount));
+        return this;
+    }
+
+    public FirstContext withThirdInfo(String description) {
+        this.actionsList.add(ThirdInfoCreateAction.of(description));
+        return this;
+    }
+
 
 }

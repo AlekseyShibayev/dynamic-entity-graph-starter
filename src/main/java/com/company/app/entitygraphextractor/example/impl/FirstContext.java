@@ -42,4 +42,14 @@ public class FirstContext extends EntityGraphExtractorAbstractContext<First> {
         return this;
     }
 
+    public FirstContext withSecondsAndThirds() {
+        addParameter("seconds", "thirds");
+        return this;
+    }
+
+    public FirstContext withSecondsAndThirdsAndThirdInfo() {
+        addParameter("seconds", "thirds", "thirdInfo");
+        return this;
+    }
+
 }

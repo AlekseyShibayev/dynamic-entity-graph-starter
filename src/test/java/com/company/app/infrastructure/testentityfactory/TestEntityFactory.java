@@ -11,9 +11,8 @@ public class TestEntityFactory {
 
     private final TestEntityFactoryRegistry testEntityFactoryRegistry;
 
-    public FirstContext createEntityContext() {
+    public FirstContext createFirstEntityContext() {
         return testEntityFactoryRegistry.getFirstContext();
     }
-
 
 }

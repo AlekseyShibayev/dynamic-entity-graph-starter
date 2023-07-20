@@ -6,6 +6,7 @@ import com.company.app.entitygraphextractor.domain.repository.FirstRepository;
 import com.company.app.entitygraphextractor.domain.repository.SecondRepository;
 import com.company.app.infrastructure.testentityfactory.component.CreateAction;
 import com.company.app.infrastructure.testentityfactory.component.FirstContext;
+import com.company.app.infrastructure.testentityfactory.component.TestEntityFactoryRegistry;
 import lombok.Builder;
 import lombok.Data;
 
@@ -24,6 +25,7 @@ public class SecondCreateAction implements CreateAction {
         First first = context.getFirst();
         FirstRepository firstRepository = context.getFirstRepository();
         SecondRepository secondRepository = context.getSecondRepository();
+        TestEntityFactoryRegistry testEntityFactoryRegistry = context.getTestEntityFactoryRegistry();
 
         List<Second> secondList = get(first);
         secondRepository.saveAll(secondList);

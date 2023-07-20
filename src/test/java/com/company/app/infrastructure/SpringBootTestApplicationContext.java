@@ -1,6 +1,7 @@
 package com.company.app.infrastructure;
 
 import com.company.app.StarterConfiguration;
+import com.company.app.entitygraphextractor.example.EntityGraphExtractor;
 import com.company.app.infrastructure.testentityfactory.TestEntityFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.TestInstance;
@@ -21,12 +22,14 @@ import javax.annotation.PostConstruct;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class SpringBootTestApplicationContext {
 
-    @Autowired
-    protected TestEntityFactory testEntityFactory;
-
     @PostConstruct
     void init() {
         log.debug("**********     запущена группа тестов всего приложения     **********");
     }
+
+    @Autowired
+    protected TestEntityFactory testEntityFactory;
+    @Autowired
+    protected EntityGraphExtractor entityGraphExtractor;
 
 }
