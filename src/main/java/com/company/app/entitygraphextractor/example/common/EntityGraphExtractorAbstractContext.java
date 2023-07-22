@@ -29,36 +29,26 @@ public abstract class EntityGraphExtractorAbstractContext<E> implements EntityGr
         return nodes;
     }
 
-    protected void addParameter(String first) {
-        EntityGraphExtractorNode firstNode = new EntityGraphExtractorNode();
-        firstNode.setName(first);
-        nodes.add(firstNode);
-    }
+    protected void addParameter(String... strings) {
+        if (strings.length < 1) {
+            throw new IllegalArgumentException("for graph need minimum one parameter");
+        }
 
-    protected void addParameter(String first, String second) {
-        EntityGraphExtractorNode firstNode = new EntityGraphExtractorNode();
-        firstNode.setName(first);
+        List<EntityGraphExtractorNode> nodeList = new ArrayList<>();
 
-        EntityGraphExtractorNode secondNode = new EntityGraphExtractorNode();
-        secondNode.setName(second);
-        firstNode.setChild(secondNode);
+        for (String string : strings) {
+            EntityGraphExtractorNode node = new EntityGraphExtractorNode();
+            node.setName(string);
+            nodeList.add(node);
+        }
 
-        nodes.add(firstNode);
-    }
+        for (int i = 1; i < nodeList.size(); i++) {
+            EntityGraphExtractorNode childNode = nodeList.get(i);
+            EntityGraphExtractorNode parentNode = nodeList.get(i - 1);
+            parentNode.setChild(childNode);
+        }
 
-    protected void addParameter(String first, String second, String third) {
-        EntityGraphExtractorNode firstNode = new EntityGraphExtractorNode();
-        firstNode.setName(first);
-
-        EntityGraphExtractorNode secondNode = new EntityGraphExtractorNode();
-        secondNode.setName(second);
-        firstNode.setChild(secondNode);
-
-        EntityGraphExtractorNode thirdNode = new EntityGraphExtractorNode();
-        thirdNode.setName(third);
-        secondNode.setChild(thirdNode);
-
-        nodes.add(firstNode);
+        nodes.add(nodeList.get(0));
     }
 
 }
