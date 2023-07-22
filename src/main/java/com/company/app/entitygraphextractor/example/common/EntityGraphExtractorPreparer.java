@@ -25,63 +25,24 @@ public class EntityGraphExtractorPreparer {
     }
 
     private <E> void prepareGraph(List<EntityGraphExtractorNode> nodes, EntityGraph<E> entityGraph) {
-        EntityGraphExtractorNode head = getHead(nodes);
-
-
-        for (EntityGraphExtractorNode node : nodes) {
-            entityGraph.addAttributeNodes(node.getName());
-
-            if (node.getChild() != null) {
-                EntityGraphExtractorNode nodeChild = node.getChild();
-                entityGraph.addSubgraph(node.getName())
-                        .addAttributeNodes(nodeChild.getName());
-
-                if (nodeChild.getChild() != null) {
-                    EntityGraphExtractorNode nodeChild2 = nodeChild.getChild();
-                    entityGraph.addSubgraph(node.getName())
-                            .addSubgraph(nodeChild.getName())
-                            .addAttributeNodes(nodeChild2.getName());
-                }
-            }
-        }
-    }
-
-    private EntityGraphExtractorNode getHead(List<EntityGraphExtractorNode> nodes) {
-        EntityGraphExtractorNode head = new EntityGraphExtractorNode();
-        head.setName("head");
-
-        for (EntityGraphExtractorNode node : nodes) {
-            recursion(head, node);
-        }
-
-        return head;
-    }
-
-    private void recursion(EntityGraphExtractorNode parent, EntityGraphExtractorNode child) {
-        List<EntityGraphExtractorNode> nodeList = parent.getNodeList();
-        if (isNotContains(nodeList, child)) {
-            nodeList.add(child);
-        } else {
-
-            for (EntityGraphExtractorNode node : nodeList) {
-                if (node.getName().equals(child.getName())) {
-                    child.setNodeList(node.getNodeList());
-                }
-            }
-
-        }
-        if (child.getChild() != null) {
-            recursion(child, child.getChild());
-        }
-    }
-
-    private boolean isNotContains(List<EntityGraphExtractorNode> parentNodeList, EntityGraphExtractorNode child) {
-        for (EntityGraphExtractorNode node : parentNodeList) {
-            if (node.getName().equals(child.getName())) {
-               return false;
-            }
-        }
-        return true;
+        EntityGraphExtractorNode head = EntityGraphExtractorGraphPreparer.createHead(nodes);
+        EntityGraphExtractorGraphPreparer.fillGraph(entityGraph, head);
+//        for (EntityGraphExtractorNode node : nodes) {
+//            entityGraph.addAttributeNodes(node.getName());
+//
+//            if (node.getChild() != null) {
+//                EntityGraphExtractorNode nodeChild = node.getChild();
+//                entityGraph.addSubgraph(node.getName())
+//                        .addAttributeNodes(nodeChild.getName());
+//
+//                if (nodeChild.getChild() != null) {
+//                    EntityGraphExtractorNode nodeChild2 = nodeChild.getChild();
+//                    entityGraph.addSubgraph(node.getName())
+//                            .addSubgraph(nodeChild.getName())
+//                            .addAttributeNodes(nodeChild2.getName());
+//                }
+//            }
+//        }
     }
 
     public <E> String getFieldNameWithId(EntityGraphExtractorContext<E> context) {
