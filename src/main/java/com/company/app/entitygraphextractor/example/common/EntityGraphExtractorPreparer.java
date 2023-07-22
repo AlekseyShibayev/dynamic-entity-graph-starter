@@ -27,22 +27,6 @@ public class EntityGraphExtractorPreparer {
     private <E> void prepareGraph(List<EntityGraphExtractorNode> nodes, EntityGraph<E> entityGraph) {
         EntityGraphExtractorNode head = EntityGraphExtractorGraphPreparer.createHead(nodes);
         EntityGraphExtractorGraphPreparer.fillGraph(entityGraph, head);
-//        for (EntityGraphExtractorNode node : nodes) {
-//            entityGraph.addAttributeNodes(node.getName());
-//
-//            if (node.getChild() != null) {
-//                EntityGraphExtractorNode nodeChild = node.getChild();
-//                entityGraph.addSubgraph(node.getName())
-//                        .addAttributeNodes(nodeChild.getName());
-//
-//                if (nodeChild.getChild() != null) {
-//                    EntityGraphExtractorNode nodeChild2 = nodeChild.getChild();
-//                    entityGraph.addSubgraph(node.getName())
-//                            .addSubgraph(nodeChild.getName())
-//                            .addAttributeNodes(nodeChild2.getName());
-//                }
-//            }
-//        }
     }
 
     public <E> String getFieldNameWithId(EntityGraphExtractorContext<E> context) {

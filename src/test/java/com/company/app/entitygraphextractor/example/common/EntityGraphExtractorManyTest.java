@@ -13,8 +13,6 @@ class EntityGraphExtractorManyTest extends SpringBootTestApplicationContext {
 
     @Autowired
     private FirstRepository firstRepository;
-    @Autowired
-    private ChatEntityGraphExtractorTestHelper helper;
 
     @Test
     void can_extract_many_10() {

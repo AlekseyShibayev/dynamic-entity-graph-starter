@@ -56,11 +56,11 @@ public class EntityGraphExtractorGraphPreparer {
 
                 Subgraph<E> subgraph = entityGraph.addSubgraph(node.getName()); // создаешь subgraph seconds
                 List<EntityGraphExtractorNode> nodeList = node.getNodeList(); // берешь всех детей у seconds
-                for (EntityGraphExtractorNode node1 : nodeList) {
-                    if (node1.getNodeList().isEmpty()) { // если у seconds ребёнка нет больше детей
-                        subgraph.addAttributeNodes(node1.getName());
+                for (EntityGraphExtractorNode child : nodeList) {
+                    if (child.getNodeList().isEmpty()) { // если у seconds ребёнка нет больше детей
+                        subgraph.addAttributeNodes(child.getName());
                     } else { // дети есть
-                        recursionFill(subgraph, node1);
+                        recursionFill(subgraph, child);
                     }
                 }
 
@@ -75,7 +75,6 @@ public class EntityGraphExtractorGraphPreparer {
         } else {
             for (EntityGraphExtractorNode child : nodeList) {
                 recursionFill(subgraph.addSubgraph(node.getName()), child);
-
             }
         }
     }

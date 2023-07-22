@@ -12,8 +12,6 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
 
     @Autowired
     private FirstRepository firstRepository;
-    @Autowired
-    private ChatEntityGraphExtractorTestHelper helper;
 
     @Test
     void exception_must_be_thrown() {
