@@ -7,6 +7,7 @@ import com.company.app.entitygraphextractor.domain.repository.FourthRepository;
 import com.company.app.entitygraphextractor.domain.repository.SecondRepository;
 import com.company.app.entitygraphextractor.domain.repository.ThirdRepository;
 import com.company.app.infrastructure.testentityfactory.component.impl.FirstInfoCreateAction;
+import com.company.app.infrastructure.testentityfactory.component.impl.FourthCreateAction;
 import com.company.app.infrastructure.testentityfactory.component.impl.SecondCreateAction;
 import com.company.app.infrastructure.testentityfactory.component.impl.SecondInfoCreateAction;
 import com.company.app.infrastructure.testentityfactory.component.impl.ThirdCreateAction;
@@ -77,5 +78,9 @@ public class FirstContext {
         return this;
     }
 
+    public FirstContext withFourth(String name, int amount) {
+        this.actionsList.add(FourthCreateAction.of(name, amount));
+        return this;
+    }
 
 }

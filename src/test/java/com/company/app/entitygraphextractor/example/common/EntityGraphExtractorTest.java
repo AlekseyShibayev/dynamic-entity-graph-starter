@@ -134,4 +134,22 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
         Assertions.assertEquals("thirdInfo", extracted.getSeconds().get(0).getThirds().get(0).getThirdInfo().getDescription());
     }
 
+    @Test
+    void can_extract_collections_depth_4() {
+        First first = testEntityFactory.createFirstEntityContext()
+                .withFirstInfo("firstInfo")
+                .withSecond("second", 2)
+                .withSecondInfo("secondInfo")
+                .withThird("third", 2)
+                .withThirdInfo("thirdInfo")
+                .withFourth("fourth", 2)
+                .createOne();
+
+        First extracted = entityGraphExtractor.createContext(first)
+                .withSecondsAndThirdsAndFourths()
+                .extractOne();
+
+        Assertions.assertEquals("fourth_0", extracted.getSeconds().get(0).getThirds().get(0).getFourths().get(0).getName());
+    }
+
 }

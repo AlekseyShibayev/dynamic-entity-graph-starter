@@ -1,5 +1,6 @@
 package com.company.app.infrastructure.testentityfactory.component;
 
+import com.company.app.entitygraphextractor.domain.entity.Fourth;
 import com.company.app.entitygraphextractor.domain.entity.Second;
 import com.company.app.entitygraphextractor.domain.entity.Third;
 import com.company.app.entitygraphextractor.domain.entity.ThirdInfo;
@@ -61,6 +62,18 @@ public class TestEntityFactoryRegistry {
                 .third(third)
                 .build();
         return thirdInfoRepository.save(thirdInfo);
+    }
+
+    public List<Fourth> createFourth(Third third, String name, int amount) {
+        List<Fourth> result = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            Fourth fourth = Fourth.builder()
+                    .name(name + "_" + i)
+                    .third(third)
+                    .build();
+            result.add(fourth);
+        }
+        return fourthRepository.saveAll(result);
     }
 
 }
