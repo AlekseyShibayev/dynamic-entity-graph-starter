@@ -1,13 +1,11 @@
 package com.company.app.entitygraphextractor.example.common;
 
-import com.google.common.collect.Lists;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -27,26 +25,6 @@ public class EntityGraphExtractorPreparer {
     }
 
     private <E> void prepareGraph(List<EntityGraphExtractorNode> nodes, EntityGraph<E> entityGraph) {
-
-//        Map<String, List<EntityGraphExtractorNode>> group = new HashMap<>();
-//        for (EntityGraphExtractorNode node : nodes) {
-//            String name = node.getName();
-//            if (group.containsKey(name)) {
-//                List<EntityGraphExtractorNode> entityGraphExtractorNodes = group.get(name);
-//                entityGraphExtractorNodes.add(node);
-//            } else {
-//                group.put(name, Collections.singletonList(node));
-//            }
-//        }
-//
-//        for (Map.Entry<String, List<EntityGraphExtractorNode>> entry : group.entrySet()) {
-//            String key = entry.getKey();
-//            List<EntityGraphExtractorNode> value = entry.getValue();
-//
-//            entityGraph.addAttributeNodes(node.getName());
-//        }
-
-
         EntityGraphExtractorNode head = getHead(nodes);
 
 
@@ -69,37 +47,41 @@ public class EntityGraphExtractorPreparer {
     }
 
     private EntityGraphExtractorNode getHead(List<EntityGraphExtractorNode> nodes) {
-        // todo строим дерево
-        EntityGraphExtractorNode head = EntityGraphExtractorNode.builder()
-                .name("HEAD")
-                .nodeList(new ArrayList<>())
-                .build();
+        EntityGraphExtractorNode head = new EntityGraphExtractorNode();
+        head.setName("head");
 
         for (EntityGraphExtractorNode node : nodes) {
-
             recursion(head, node);
-
         }
-
 
         return head;
     }
 
     private void recursion(EntityGraphExtractorNode parent, EntityGraphExtractorNode child) {
         List<EntityGraphExtractorNode> nodeList = parent.getNodeList();
-        for (EntityGraphExtractorNode node : nodeList) {
-            if (node.getName().equals(child.getName())) {
-                // значит он там уже был и
-                if (child.getChild() != null) {
-                    recursion(child, child.getChild());
+        if (isNotContains(nodeList, child)) {
+            nodeList.add(child);
+        } else {
+
+            for (EntityGraphExtractorNode node : nodeList) {
+                if (node.getName().equals(child.getName())) {
+                    child.setNodeList(node.getNodeList());
                 }
             }
-        }
 
-        nodeList.add(child);
+        }
         if (child.getChild() != null) {
             recursion(child, child.getChild());
         }
+    }
+
+    private boolean isNotContains(List<EntityGraphExtractorNode> parentNodeList, EntityGraphExtractorNode child) {
+        for (EntityGraphExtractorNode node : parentNodeList) {
+            if (node.getName().equals(child.getName())) {
+               return false;
+            }
+        }
+        return true;
     }
 
     public <E> String getFieldNameWithId(EntityGraphExtractorContext<E> context) {
