@@ -123,7 +123,7 @@ class EntityGraphExtractorTest extends SpringBootTestApplicationContext {
 
         First extracted = entityGraphExtractor.createContext(first)
                 .withFirstInfo()
-//                .withSeconds()
+                .withSeconds()
                 .withSecondsAndSecondInfo()
                 .withSecondsAndThirds()
                 .withSecondsAndThirdsAndThirdInfo()

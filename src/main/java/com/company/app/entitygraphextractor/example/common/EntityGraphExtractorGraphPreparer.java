@@ -50,22 +50,32 @@ public class EntityGraphExtractorGraphPreparer {
     public static <E> void fillGraph(EntityGraph<E> entityGraph, EntityGraphExtractorNode head) {
         List<EntityGraphExtractorNode> headNodeList = head.getNodeList();
         for (EntityGraphExtractorNode node : headNodeList) {
-            if (node.getNodeList().isEmpty()) {
+            if (node.getNodeList().isEmpty()) { // если нет детей
                 entityGraph.addAttributeNodes(node.getName());
-            } else {
-                Subgraph<E> subgraph = entityGraph.addSubgraph(node.getName());
-                recursionFill(subgraph, node);
+            } else { // дети есть
+
+                Subgraph<E> subgraph = entityGraph.addSubgraph(node.getName()); // создаешь subgraph seconds
+                List<EntityGraphExtractorNode> nodeList = node.getNodeList(); // берешь всех детей у seconds
+                for (EntityGraphExtractorNode node1 : nodeList) {
+                    if (node1.getNodeList().isEmpty()) { // если у seconds ребёнка нет больше детей
+                        subgraph.addAttributeNodes(node1.getName());
+                    } else { // дети есть
+                        recursionFill(subgraph, node1);
+                    }
+                }
+
             }
         }
     }
 
     private static <E> void recursionFill(Subgraph<E> subgraph, EntityGraphExtractorNode node) {
         List<EntityGraphExtractorNode> nodeList = node.getNodeList();
-        if (nodeList.isEmpty()) {
-            subgraph.addAttributeNodes(node.getName()); // выход из рекурсии
+        if (nodeList.isEmpty()) { // выход из рекурсии
+            subgraph.addAttributeNodes(node.getName());
         } else {
             for (EntityGraphExtractorNode child : nodeList) {
                 recursionFill(subgraph.addSubgraph(node.getName()), child);
+
             }
         }
     }
