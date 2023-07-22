@@ -41,29 +41,24 @@ public abstract class EntityGraphExtractorAbstractContext<E> implements EntityGr
 
         EntityGraphExtractorNode secondNode = new EntityGraphExtractorNode();
         secondNode.setName(second);
-        firstNode.
+        firstNode.setChild(secondNode);
 
-        nodes.add(node);
-
-
-        nodes.add(EntityGraphExtractorNode.builder()
-                .name(first)
-                .child(EntityGraphExtractorNode.builder()
-                        .name(second)
-                        .build())
-                .build());
+        nodes.add(firstNode);
     }
 
     protected void addParameter(String first, String second, String third) {
-        nodes.add(EntityGraphExtractorNode.builder()
-                .name(first)
-                .child(EntityGraphExtractorNode.builder()
-                        .name(second)
-                        .child(EntityGraphExtractorNode.builder()
-                                .name(third)
-                                .build())
-                        .build())
-                .build());
+        EntityGraphExtractorNode firstNode = new EntityGraphExtractorNode();
+        firstNode.setName(first);
+
+        EntityGraphExtractorNode secondNode = new EntityGraphExtractorNode();
+        secondNode.setName(second);
+        firstNode.setChild(secondNode);
+
+        EntityGraphExtractorNode thirdNode = new EntityGraphExtractorNode();
+        thirdNode.setName(third);
+        secondNode.setChild(thirdNode);
+
+        nodes.add(firstNode);
     }
 
 }
